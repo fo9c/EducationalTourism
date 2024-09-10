@@ -1,0 +1,20 @@
+# 配置服务端口
+server:
+  port: 8081
+
+# 配置应用名称
+spring:
+  application:
+    name: JavaWeb_Framework
+
+# 配置数据库
+  datasource:
+    # 数据库连接池
+    url: jdbc:mysql://localhost:3306/mybatisplus-frame-test?serverTimezone=UTC
+
+    # 数据库驱动
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    # 数据库用户名与密码
+    username: 'root'
+    password: '123456'
