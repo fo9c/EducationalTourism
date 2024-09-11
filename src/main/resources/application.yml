@@ -10,7 +10,7 @@ spring:
 # 配置数据库
   datasource:
     # 数据库连接池
-    url: jdbc:mysql://localhost:3306/mybatisplus-frame-test?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3307/educationtourism?serverTimezone=UTC
 
     # 数据库驱动
     driver-class-name: com.mysql.cj.jdbc.Driver
