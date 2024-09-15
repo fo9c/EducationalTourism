@@ -9,13 +9,19 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserService userService;
 
+    @Override
     public void login() {
-        System.out.println("login");
+        userService.login();
     }
+
+    @Override
     public void register() {
-        System.out.println("register");
+        userService.register();
     }
+
+    @Override
     public void logout() {
-        System.out.println("logout");
+        userService.logout();
     }
+
 }
