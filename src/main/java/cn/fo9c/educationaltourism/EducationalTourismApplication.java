@@ -27,8 +27,8 @@ public class EducationalTourismApplication {
 
         System.out.println(
                 "———————————————————————————————————————————————————————————————————————————————————————————————————————————\n\t" +
-                "         Access URLs:   http://localhost:" + port + path + "              SpringBoot   Version: " + springBootVersion + "\n\t" +
-                "         DataBase:      MySQL                              Mybatis-Plus Version: " + mybatisVersion + "\n" +
+                "         Access URLs:   http://localhost:" + port + path + "              SpringBoot Version: " + springBootVersion + "\n\t" +
+                "         DataBase:      MySQL                              Mybatis    Version: " + mybatisVersion + "\n" +
                 "———————————————————————————————————————————————————————————————————————————————————————————————————————————");
     }
 
