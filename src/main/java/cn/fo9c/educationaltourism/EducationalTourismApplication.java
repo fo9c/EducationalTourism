@@ -30,6 +30,7 @@ public class EducationalTourismApplication {
                 "         Access URLs:   http://localhost:" + port + path + "              SpringBoot   Version: " + springBootVersion + "\n\t" +
                 "         DataBase:      MySQL                              Mybatis-Plus Version: " + mybatisVersion + "\n" +
                 "———————————————————————————————————————————————————————————————————————————————————————————————————————————");
+        /////54
 
     }
 
