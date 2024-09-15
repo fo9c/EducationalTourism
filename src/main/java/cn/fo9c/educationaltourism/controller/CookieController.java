@@ -2,14 +2,12 @@ package cn.fo9c.educationaltourism.controller;
 
 import cn.fo9c.educationaltourism.utils.CookieUtils;
 import cn.fo9c.educationaltourism.utils.Result;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 @RestController
@@ -27,7 +25,7 @@ public class CookieController {
 
 
         // 创建一个 Cookie
-        CookieUtils.setCookieValue(request, response,"myCookie", "m你好", 6);
+        CookieUtils.setCookieValue(request, response,"myCookie", "m你 好135&*", 6);
         System.out.println("setCookie123");
         return "setCookie";
     }
