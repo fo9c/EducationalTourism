@@ -1,5 +1,6 @@
 package cn.fo9c.educationaltourism;
 
+import cn.fo9c.educationaltourism.utils.UUIDGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootVersion;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,7 +25,7 @@ public class EducationalTourismApplication {
 
         // Mybatis的环境变量
         String mybatisVersion = "3.0.3";
-
+        System.out.println(UUIDGenerator.newUUID());
         System.out.println(
                 "———————————————————————————————————————————————————————————————————————————————————————————————————————————\n\t" +
                 "         Access URLs:   http://localhost:" + port + path + "              SpringBoot Version: " + springBootVersion + "\n\t" +
