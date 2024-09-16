@@ -25,7 +25,6 @@ public class EducationalTourismApplication {
 
         // Mybatis的环境变量
         String mybatisVersion = "3.0.3";
-        System.out.println(UUIDGenerator.newUUID());
         System.out.println(
                 "———————————————————————————————————————————————————————————————————————————————————————————————————————————\n\t" +
                 "         Access URLs:   http://localhost:" + port + path + "              SpringBoot Version: " + springBootVersion + "\n\t" +

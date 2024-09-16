@@ -14,10 +14,10 @@ import java.util.ArrayList;
 public class CookieController {
 
     @GetMapping("/getCookie")
-    public String getCookie(HttpServletRequest request, @CookieValue(value = "myCookie",
+    public String getCookie(HttpServletRequest request, @CookieValue(value = "myCookie1",
             defaultValue = "Atta") String username ) {
         System.out.println("username = " + username);
-        return CookieUtils.getCookieValue(request, "myCookie");
+        return CookieUtils.getCookieValue(request, "myCookie1");
     }
 
     @GetMapping("/setCookie")
@@ -25,9 +25,18 @@ public class CookieController {
 
 
         // 创建一个 Cookie
-        CookieUtils.setCookieValue(request, response,"myCookie", "m你 好135&*", 6);
+        CookieUtils.setCookieValue(request, response,"myCookie1", "m你 好135&*", 600000);
+        CookieUtils.setCookieValue(request, response,"myCookie2", "m你 好135&*", 600000);
+
+
         System.out.println("setCookie123");
         return "setCookie";
+    }
+
+    @GetMapping("/deleteCookie")
+    public String deleteCookie(HttpServletResponse response, HttpServletRequest request) {
+        CookieUtils.deleteCookie(request, response);
+        return "deleteCookie";
     }
 
     @GetMapping("/1")

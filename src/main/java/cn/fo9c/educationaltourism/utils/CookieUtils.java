@@ -57,7 +57,7 @@ public final class CookieUtils{
      */
     public static void setCookieValue(HttpServletRequest request, HttpServletResponse response, String cookieName, String cookieValue, int cookieMaxAge) {
         try {
-            Cookie cookie = new Cookie(cookieName, URLEncoder.encode(cookieValue, cookieEncoding));
+            Cookie cookie = new Cookie(cookieName, null);
 
             // 设置 Cookie 的最大持续时间
             cookie.setMaxAge(cookieMaxAge);
@@ -70,7 +70,7 @@ public final class CookieUtils{
             // 设置 Cookie 的域名
             cookie.setDomain(request.getServerName());
 
-            // 对 Cookie 进行 URL 编码
+            // 对 Cookie Value 进行 URL 编码
             if (isDecoder){
                 cookie.setValue(URLEncoder.encode(cookieValue, cookieEncoding));
             }else {
@@ -78,6 +78,32 @@ public final class CookieUtils{
             }
 
             response.addCookie(cookie);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 删除 Cookie 的值（将 Cookie 的值设置为空并设置最大持续时间为 0）
+     *
+     * @param request      服务端 HTTP 请求值
+     * @param response     客户端 HTTP 响应值
+     */
+    public static void deleteCookie(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            // 获取请求中的所有 Cookie
+            Cookie[] cookieList = request.getCookies();
+            if (cookieList == null) {
+                return;
+            }
+
+            // 遍历 Cookie 数组
+            for (Cookie cookie : cookieList) {
+                Cookie newCookie = new Cookie(cookie.getName(), null);
+                newCookie.setMaxAge(0);
+                response.addCookie(newCookie);
+            }
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
