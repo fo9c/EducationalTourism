@@ -1,6 +1,6 @@
 package cn.fo9c.educationaltourism.mapper;
 
-import cn.fo9c.educationaltourism.domain.User;
+import cn.fo9c.educationaltourism.domain.User.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -14,4 +14,11 @@ public interface UserMapper {
     @Select("select * from user where user_uuid = #{userUUID}")
     User getUserInfoByUUID(String userUUID);
 
+    /**
+     * 通过用户名获取用户信息
+     * @param userName 用户名
+     * @return 用户信息
+     */
+    @Select("select * from user where user_name = #{userName}")
+    User selectUserByName(String userName);
 }

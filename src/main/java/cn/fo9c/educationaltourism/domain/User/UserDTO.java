@@ -1,14 +1,15 @@
-package cn.fo9c.educationaltourism.domain;
+package cn.fo9c.educationaltourism.domain.User;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+@Builder
+public class UserDTO {
     String id;
-    String user_name;
-    String user_password;
+    String pwd;
 }

@@ -1,6 +1,9 @@
 package cn.fo9c.educationaltourism;
 
+import cn.fo9c.educationaltourism.service.CookieService;
 import cn.fo9c.educationaltourism.utils.UUIDGenerator;
+import jakarta.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootVersion;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -34,8 +34,9 @@ public class CookieController {
      */
     @GetMapping("/setCookie")
     public String setCookie(HttpServletResponse response, HttpServletRequest request) {
-        CookieUtils.setCookieValue(request, response,"myCookie1", "m你 好135&*", 600000);
-        CookieUtils.setCookieValue(request, response,"myCookie2", "m你 好135&*", 600000);
+        CookieUtils.setCookie(request, response,"myCookie1", "m你 好135&*", 600000);
+        CookieUtils.setCookie(request, response,"myCookie2", "m你 好135&*", 600000);
+        CookieUtils.setCookie(request, response,"userUUID", "123456", 600000);
         System.out.println("setCookie.....");
         return "setCookie";
     }
