@@ -55,7 +55,7 @@ public final class CookieUtils{
      * @param cookieValue  Cookie 的值
      * @param cookieMaxAge Cookie 的最大持续时间（单位：秒）
      */
-    public static void setCookieValue(HttpServletRequest request, HttpServletResponse response, String cookieName, String cookieValue, int cookieMaxAge) {
+    public static void setCookie(HttpServletRequest request, HttpServletResponse response, String cookieName, String cookieValue, int cookieMaxAge) {
         try {
             Cookie cookie = new Cookie(cookieName, null);
 
