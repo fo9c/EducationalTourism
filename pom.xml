@@ -31,7 +31,27 @@
         <java.version>17</java.version>
     </properties>
 
+    <!-- ———————————————————————————————————————————————————— -->
+    <repositories>
+        <!-- 添加Spring AI项目仓库 -->
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
 
+        <repository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+    </repositories>
     <!-- ———————————————————————————————————————————————————— -->
     <dependencies>
 
@@ -74,6 +94,22 @@
             <artifactId>mybatis-spring-boot-starter-test</artifactId>
             <version>3.0.3</version>
             <scope>test</scope>
+        </dependency>
+
+        <!-- 引入Spring AI 框架-->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-bom</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+
+        <!-- 引入智谱清言 AI -->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-zhipuai-spring-boot-starter</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
 
     </dependencies>

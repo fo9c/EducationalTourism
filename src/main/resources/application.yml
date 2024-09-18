@@ -2,12 +2,12 @@
 server:
   port: 8081
 
-# 配置应用名称
 spring:
+  # 配置应用名称
   application:
     name: JavaWeb_Framework
 
-# 配置数据库
+  # 配置数据库
   datasource:
     # 数据库连接池
     url: jdbc:mysql://localhost:3307/educationtourism?serverTimezone=UTC
@@ -18,3 +18,8 @@ spring:
     # 数据库用户名与密码
     username: 'root'
     password: '123456'
+
+  ai:
+    zhipuai:
+      api-key: b4a0b4563a4a0272afa36bd0cff328f5.Hby554oNX2Pdl7gH
+      base-url: https://open.bigmodel.cn/api/paas

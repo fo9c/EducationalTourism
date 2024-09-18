@@ -13,31 +13,46 @@ import java.util.ArrayList;
 @RestController
 public class CookieController {
 
+    /**
+     * 获取 Cookie 的值
+     * @param request 服务端 HTTP 请求值
+     * @param username 需要查找的 Cookie 名称
+     * @return Cookie 的值
+     */
     @GetMapping("/getCookie")
-    public String getCookie(HttpServletRequest request, @CookieValue(value = "myCookie1",
-            defaultValue = "Atta") String username ) {
+    public String getCookie(HttpServletRequest request,
+                            @CookieValue(value = "myCookie1", defaultValue = "Atta") String username ) {
         System.out.println("username = " + username);
         return CookieUtils.getCookieValue(request, "myCookie1");
     }
 
+    /**
+     * 设置 Cookie 的值
+     * @param response 客户端 HTTP 响应值
+     * @param request 服务端 HTTP 请求值
+     * @return 设置 Cookie 的值
+     */
     @GetMapping("/setCookie")
     public String setCookie(HttpServletResponse response, HttpServletRequest request) {
-
-
-        // 创建一个 Cookie
         CookieUtils.setCookieValue(request, response,"myCookie1", "m你 好135&*", 600000);
         CookieUtils.setCookieValue(request, response,"myCookie2", "m你 好135&*", 600000);
-
-
-        System.out.println("setCookie123");
+        System.out.println("setCookie.....");
         return "setCookie";
     }
 
+
+    /**
+     * 删除所有 Cookie 的值
+     * @param response 客户端 HTTP 响应值
+     * @param request 服务端 HTTP 请求值
+     * @return 删除 Cookie 的值
+     */
     @GetMapping("/deleteCookie")
     public String deleteCookie(HttpServletResponse response, HttpServletRequest request) {
         CookieUtils.deleteCookie(request, response);
         return "deleteCookie";
     }
+
 
     @GetMapping("/1")
     public Result<ArrayList> getCookie1() {
