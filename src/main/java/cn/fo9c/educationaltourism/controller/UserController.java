@@ -37,7 +37,11 @@ public class UserController {
         }
 
         // 2、判断用户登录信息是否正确
-        if (userService.UserLogin(User.builder().user_name(userDTO.getId()).user_password(userDTO.getPwd()).build())) {
+        if (userService.UserLogin(
+                User.builder()
+                        .user_name(userDTO.getId())
+                        .user_password(userDTO.getPwd())
+                        .build())) {
             // 如果正确，设置cookie
             CookieUtils.setCookie(request, response, "user", userDTO.getId(), 60 * 60 * 24 * 7);
             return Map.of("status", true);
@@ -45,4 +49,28 @@ public class UserController {
             return Map.of("status", false);
         }
     }
+
+    @GetMapping("/registerform")
+    //@RequestBody 可以将请求的json数据封装到实体对象当中
+    public Map<String, Boolean> UserRegister(HttpServletRequest request,
+                                             HttpServletResponse response,
+                                             @RequestBody UserDTO userDTO) {
+
+//        // 1、验证用户信息是否有效
+//        if (!userService.validateUser(userDTO)) {
+//            return Map.of("status", false);
+//        }
+
+
+        // 2、保存用户信息
+        if (userService.UserRegister( User.builder()
+                .user_name(userDTO.getId())
+                .user_password(userDTO.getPwd())
+                .build())){
+            return Map.of("status", true);
+        } else {
+            return Map.of("status", false);
+        }
+    }
+
 }

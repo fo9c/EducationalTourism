@@ -26,4 +26,12 @@ public class UserServiceImpl implements UserService {
         return userMapper.selectUserByName(userName).getUser_uuid();
     }
 
+    @Override
+    public Boolean UserRegister(User user) {
+        if (userMapper.saveUser(user)==1)
+            return true;
+        else
+            return false;
+    }
+
 }

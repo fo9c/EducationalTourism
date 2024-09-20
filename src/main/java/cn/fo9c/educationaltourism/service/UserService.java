@@ -20,4 +20,5 @@ public interface UserService {
      */
     String getUserUUIDByUserName(String userName);
 
+    Boolean UserRegister(User user);
 }
