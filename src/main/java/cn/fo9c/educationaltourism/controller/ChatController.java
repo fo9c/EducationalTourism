@@ -2,13 +2,18 @@ package cn.fo9c.educationaltourism.controller;
 
 import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.ai.chat.model.ChatResponse;
+import org.springframework.ai.chat.model.Generation;
 import org.springframework.ai.chat.prompt.Prompt;
+import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.zhipuai.ZhiPuAiChatModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
+
+import java.util.List;
+import java.util.Map;
 
 @RestController
 public class ChatController {
@@ -22,9 +27,12 @@ public class ChatController {
     }
 
     @GetMapping("/ai/generate")
-    public String generate(@RequestParam(value = "message", defaultValue = "1+1=？tell me why") String message) {
+    public List<Generation> generate(@RequestParam(value = "message", defaultValue = "举例一个伟人,说明他的事迹") String message) {
+        // 创建PromptTemplate对象，设置语句模板
+        PromptTemplate promptTemplate = new PromptTemplate("告诉我一个关于{thing}的{about}。");
+        Prompt tellSomething = promptTemplate.create(Map.of("thing", "猫", "about", "有趣的事情"));
 
-        return chatModel.call(message);
+        return chatModel.call(tellSomething).getResults();
     }
 
     @GetMapping("/ai/generateStream")
