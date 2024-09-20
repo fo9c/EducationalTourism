@@ -1,6 +1,7 @@
 package cn.fo9c.educationaltourism.mapper;
 
 import cn.fo9c.educationaltourism.domain.User.User;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -21,4 +22,8 @@ public interface UserMapper {
      */
     @Select("select * from user where user_name = #{userName}")
     User selectUserByName(String userName);
+
+    //保存用户的id和pwd至数据库
+    @Insert("INSERT INTO user (id, pwd) VALUES (#{id}, #{pwd})")
+    int saveUser(User user);
 }
