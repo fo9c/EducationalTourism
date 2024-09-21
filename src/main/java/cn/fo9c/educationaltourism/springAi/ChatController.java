@@ -75,7 +75,7 @@ public class ChatController {
      * @param name 用户名
      * @return AI回复
      */
-    @GetMapping("/systemPT")
+        @GetMapping("/systemPT")
     public List<Generation> systemPT(@RequestParam(value = "name", defaultValue = "aalo") String name) {
         // 创建UserMessage对象，设置用户基本消息
         String userText = """
