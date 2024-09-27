@@ -4,16 +4,17 @@ import org.springframework.ai.chat.messages.Message;
 import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.model.Generation;
-import org.springframework.ai.chat.prompt.AssistantPromptTemplate;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.chat.prompt.SystemPromptTemplate;
-import org.springframework.ai.ollama.OllamaChatModel;
+import org.springframework.ai.model.Media;
+import org.springframework.ai.ollama.api.OllamaModel;
+import org.springframework.ai.ollama.api.OllamaOptions;
+import org.springframework.ai.zhipuai.ZhiPuAiChatModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.util.MimeTypeUtils;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 
 import java.util.List;
@@ -23,23 +24,23 @@ import java.util.Map;
  * 这是一个关于Spring AI的功能集合
  */
 @RestController
-@RequestMapping("/ai")
 public class ChatController {
 
     // 设置私有语言模型，注入ZhiPuAiChatModel对象
-//    private final ZhiPuAiChatModel chatModel;
-//
-//    @Autowired
-//    public ChatController(ZhiPuAiChatModel chatModel) {
-//        this.chatModel = chatModel;
-//    }
-
-    private final OllamaChatModel chatModel;
+    private final ZhiPuAiChatModel chatModel;
 
     @Autowired
-    public ChatController(OllamaChatModel ollamaChatModel) {
-        this.chatModel = ollamaChatModel;
+    public ChatController(ZhiPuAiChatModel chatModel) {
+        this.chatModel = chatModel;
     }
+
+    // 设置私有语言模型，注入OllamaChatModel对象
+//    private final OllamaChatModel chatModel;
+//
+//    @Autowired
+//    public ChatController(OllamaChatModel ollamaChatModel) {
+//        this.chatModel = ollamaChatModel;
+//    }
 
     /**
      * 简单的调用 AI ChatModel 生成回复
@@ -75,11 +76,11 @@ public class ChatController {
      * @param name 用户名
      * @return AI回复
      */
-        @GetMapping("/systemPT")
-    public List<Generation> systemPT(@RequestParam(value = "name", defaultValue = "aalo") String name) {
+    @GetMapping("/systemPT")
+    public List<Generation> systemPT(@RequestParam(value = "name", defaultValue = "fo9c") String name) {
         // 创建UserMessage对象，设置用户基本消息
         String userText = """
-        tell me a joke about dog.
+        和我讲一个关于狗的笑话。
         """;
         Message userMessage = new UserMessage(userText);
 
@@ -102,11 +103,38 @@ public class ChatController {
     /**
      * 生成流
      *
-     * @return AI回复（可设置初始值）
+     * @return AI回复
      */
     @GetMapping("/ai/generateStream")
     public Flux<ChatResponse> generateStream(@RequestParam(value = "message", defaultValue = "Tell me a joke") String message) {
         var prompt = new Prompt(new UserMessage(message));
         return chatModel.stream(prompt);
     }
+
+    /**
+     * 解释图片的内容
+     * @return AI回复
+     */
+    @GetMapping("/pic")
+    public Generation pic() {
+        // 创建ClassPathResource对象，设置图片路径
+        var imageResource = new ClassPathResource("/picTest.png");
+
+        // 创建UserMessage对象，设置用户基本消息
+        var userMessage = new UserMessage("解释图片里有什么？",
+                new Media(MimeTypeUtils.IMAGE_PNG, imageResource));
+
+        // 调用chatModel对象的call方法，传入UserMessage类型的userMessage
+        ChatResponse response = chatModel.call(new Prompt(userMessage,
+                OllamaOptions.builder().withModel(OllamaModel.LLAVA)));
+        return response.getResult();
+    }
+
+    @GetMapping("/send_message")
+    public Map<String, String> sendMessage(@RequestBody String message) {
+        return Map.of("message", chatModel.call(message));
+    }
+
+
+
 }

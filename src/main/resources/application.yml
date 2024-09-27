@@ -23,6 +23,7 @@ spring:
     zhipuai:
       api-key: b4a0b4563a4a0272afa36bd0cff328f5.Hby554oNX2Pdl7gH
       base-url: https://open.bigmodel.cn/api/paas
+
     ollama:
       base-url: http://localhost:11434
       chat:
